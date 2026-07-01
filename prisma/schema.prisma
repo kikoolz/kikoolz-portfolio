@@ -1,0 +1,199 @@
+generator client {
+  provider = "prisma-client"
+  output   = "./generated"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+//////////////////////
+// ENUMS
+//////////////////////
+
+enum Role {
+  USER
+  ADMIN
+}
+
+enum PostStatus {
+  DRAFT
+  PUBLISHED
+}
+
+//////////////////////
+// USER
+//////////////////////
+
+model User {
+  id        String   @id @default(cuid())
+  name      String?
+  email     String   @unique
+  password  String
+  role      Role     @default(USER)
+
+  posts     Post[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+//////////////////////
+// POSTS (BLOG)
+//////////////////////
+
+model Post {
+  id          String     @id @default(cuid())
+  title       String
+  slug        String     @unique
+  excerpt     String?
+  content     String     // Markdown or JSON (rich text)
+  coverImage  String?
+  status      PostStatus @default(DRAFT)
+
+  authorId    String
+  author      User       @relation(fields: [authorId], references: [id])
+
+  categories  Category[] @relation("PostCategories")
+  tags        Tag[]      @relation("PostTags")
+
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+
+  @@index([slug])
+  @@index([status])
+}
+
+//////////////////////
+// PROJECTS (PORTFOLIO)
+//////////////////////
+
+model Project {
+  id          String   @id @default(cuid())
+  title       String
+  slug        String   @unique
+  description String?
+  content     String?  // Optional detailed case study
+
+  image       String?
+  link        String?
+  domain      String?
+
+  isNew       Boolean  @default(false)
+  isV2        Boolean  @default(false)
+  isWIP       Boolean  @default(false)
+  year        String?
+
+  tags        Tag[]    @relation("ProjectTags")
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([slug])
+  @@index([isNew])
+}
+
+//////////////////////
+// HOMEPAGE CONTENT
+//////////////////////
+
+model HomepageContent {
+  id          String   @id @default(cuid())
+  section     String   // hero, about, services, etc.
+  content     Json     // Flexible content structure
+  type        String   // text, html, markdown, etc.
+  isActive    Boolean  @default(true)
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([section])
+  @@index([isActive])
+}
+
+//////////////////////
+// CATEGORY
+//////////////////////
+
+model Category {
+  id    String  @id @default(cuid())
+  name  String  @unique
+  slug  String  @unique
+
+  posts Post[]  @relation("PostCategories")
+}
+
+//////////////////////
+// TIMELINE
+//////////////////////
+
+model TimelineItem {
+  id          String   @id @default(cuid())
+  date        String
+  role        String
+  location    String
+  description String
+  type        String   @default("work") // work, education, achievement
+  isActive    Boolean  @default(true)
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([type])
+  @@index([isActive])
+}
+
+//////////////////////
+// NEWSLETTER
+//////////////////////
+
+model NewsletterSubscriber {
+  id          String   @id @default(cuid())
+  email       String   @unique
+  isActive    Boolean  @default(true)
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([email])
+  @@index([isActive])
+}
+
+model NewsletterCampaign {
+  id            String   @id @default(cuid())
+  title         String
+  subject       String
+  content       String
+  scheduledFor  DateTime?
+  isActive      Boolean  @default(true)
+  
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@index([isActive])
+  @@index([scheduledFor])
+}
+
+model NewsletterContent {
+  id          String   @id @default(cuid())
+  title       String
+  content     String
+  isActive    Boolean  @default(true)
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([isActive])
+}
+
+//////////////////////
+// TAG
+//////////////////////
+
+model Tag {
+  id        String     @id @default(cuid())
+  name      String     @unique
+  slug      String     @unique
+
+  posts     Post[]     @relation("PostTags")
+  projects  Project[]  @relation("ProjectTags")
+}

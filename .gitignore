@@ -1,0 +1,73 @@
+# build output
+dist/
+.next/
+out/
+# generated types
+.astro/
+tsconfig.tsbuildinfo
+next-env.d.ts
+
+# dependencies
+node_modules/
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+*.log
+
+# environment variables
+.env
+.env*.local
+.env.production
+.env.development
+.env.test
+
+# macOS-specific files
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# jetbrains setting folder
+.idea/
+
+# cursor AI settings
+.cursor/
+
+# vscode settings (keep local settings local)
+.vscode/settings.json
+.vscode/tasks.json
+.vscode/launch.json
+.vscode/extensions.json
+
+# Ignore cursor AI rules
+.cursor/rules/codacy.mdc
+
+# Ignore vscode AI rules
+.github/instructions/codacy.instructions.md
+
+# Prisma
+/generated/prisma
+prisma/*.db
+prisma/*.db-journal
+
+# Vercel
+.vercel
+
+# Turbopack
+.turbo
+
+# Cache directories
+.cache
+.next/cache
+
+# Editor backup files
+*.swp
+*.swo
+*~
+*.bak
+
+# OS generated files
+Thumbs.db
+.DS_Store?

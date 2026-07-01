@@ -1,0 +1,57 @@
+/* Container for pretty-code blocks */
+[data-rehype-pretty-code-fragment] {
+  @apply relative my-6 overflow-hidden rounded-xl border border-zinc-200 bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900;
+}
+
+/* Main code element */
+[data-rehype-pretty-code-fragment] code {
+  @apply grid min-w-full break-words text-sm text-zinc-800 dark:text-zinc-100;
+  counter-reset: line;
+  box-decoration-break: clone;
+}
+
+/* Individual lines */
+[data-rehype-pretty-code-fragment] .line {
+  @apply px-5 py-1.5;
+}
+
+/* Enable scrolling for long lines */
+[data-rehype-pretty-code-fragment] pre {
+  @apply overflow-x-auto;
+}
+
+/* Line numbers */
+[data-rehype-pretty-code-fragment] [data-line-numbers] > .line::before {
+  counter-increment: line;
+  content: counter(line);
+  display: inline-block;
+  width: 2rem;
+  margin-right: 1rem;
+  text-align: right;
+  color: rgb(161 161 170);
+}
+
+/* Highlighted lines */
+[data-rehype-pretty-code-fragment] .line--highlighted {
+  @apply bg-zinc-200/60 dark:bg-zinc-800/60;
+}
+
+/* Token span fix */
+[data-rehype-pretty-code-fragment] .line-highlighted span {
+  @apply relative;
+}
+
+/* Highlighted words */
+[data-rehype-pretty-code-fragment] .word--highlighted {
+  @apply rounded-md bg-zinc-300/60 dark:bg-zinc-700/60 px-1;
+}
+
+/* Code block title */
+[data-rehype-pretty-code-title] {
+  @apply border-b border-zinc-200 dark:border-zinc-800 px-5 py-2 text-xs font-medium uppercase tracking-wide text-zinc-500 dark:text-zinc-400;
+}
+
+/* Remove extra margin between title and code block */
+[data-rehype-pretty-code-title] + pre {
+  @apply mt-0;
+}

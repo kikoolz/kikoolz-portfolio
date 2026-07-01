@@ -1,0 +1,140 @@
+@import "tailwindcss";
+
+
+
+
+/* Proxima Nova font faces */
+@font-face {
+  font-family: "Proxima Nova";
+  src: url("/fonts/ProximaNova-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Proxima Nova";
+  src: url("/fonts/ProximaNova-Semibold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Proxima Nova";
+  src: url("/fonts/ProximaNova-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Proxima Nova";
+  src: url("/fonts/ProximaNova-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Striper-Regular font face */
+@font-face {
+  font-family: "Striper-Regular";
+  src: url("/fonts/Striper-Regular.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@theme {
+	--color-primary-50: var(--color-teal-50);
+	--color-primary-100: var(--color-teal-100);
+	--color-primary-200: var(--color-teal-200);
+	--color-primary-300: var(--color-teal-300);
+	--color-primary-400: var(--color-teal-400);
+	--color-primary-500: var(--color-teal-500);
+	--color-primary-600: var(--color-teal-600);
+	--color-primary-700: var(--color-teal-700);
+	--color-primary-800: var(--color-teal-800);
+	--color-primary-900: var(--color-teal-900);
+	--color-primary-950: var(--color-teal-950);
+	--font-family-striper:
+		"Striper-Regular", ui-sans-serif, system-ui, -apple-system,
+		BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial,
+		"Noto Sans", sans-serif;
+	--font-family-proxima:
+		"Proxima Nova", ui-sans-serif, system-ui, -apple-system,
+		BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial,
+		"Noto Sans", sans-serif;
+	}
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+body {
+	font-family: "Proxima Nova", ui-sans-serif, system-ui, -apple-system,
+		BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial,
+		"Noto Sans", sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: var(--font-calsans), ui-sans-serif, system-ui, -apple-system,
+		BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial,
+		"Noto Sans", sans-serif;
+	font-weight: 600;
+}
+
+
+
+.scroll-down #main-header {
+	@apply transform -translate-y-[200px];
+}
+
+/* Custom font class for article cards */
+.font-striper-article {
+	font-family: var(--font-family-striper);
+	font-weight: 600;
+}
+
+
+
+/* Line clamp utilities for text truncation */
+.line-clamp-1 {
+	display: -webkit-box;
+	-webkit-line-clamp: 1;
+	line-clamp: 1;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+}
+
+.line-clamp-2 {
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	line-clamp: 2;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+}
+
+.line-clamp-3 {
+	display: -webkit-box;
+	-webkit-line-clamp: 3;
+	line-clamp: 3;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+}
+
+.line-clamp-4 {
+	display: -webkit-box;
+	-webkit-line-clamp: 4;
+	line-clamp: 4;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+}
+
+
+
+
+
